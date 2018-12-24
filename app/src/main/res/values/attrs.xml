@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--<declare-styleable name="RaidoTextView">-->
+        <!--<attr name="titleText" format="string" />-->
+        <!--<attr name="background" format="color"/>-->
+        <!--<attr name="titleTextSize" format="dimension"/>-->
+        <!--<attr name="titleTextColor" format="color"/>-->
+        <!--<attr name="mCornerSize" format="integer"/>-->
+    <!--</declare-styleable>-->
+
+    <!--<declare-styleable name="CircleTextView">-->
+        <!--<attr name="stroke_width" format="dimension" />-->
+        <!--&lt;!&ndash; Space between circle and boundary of TextView &ndash;&gt;-->
+        <!--<attr name="space" format="dimension" />-->
+        <!--<attr name="stroke_color" format="color" />-->
+    <!--</declare-styleable>-->
+
+
+</resources>

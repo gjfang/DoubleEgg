@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">FDer</string>
+    <string name="app_name">旦酱</string>
     <string name="title_home">主页</string>
-    <string name="title_dashboard">发现</string>
+    <string name="title_dashboard">广场</string>
     <string name="title_notifications">消息</string>
+    <string name="title_contact"> 朋友</string>
 </resources>
