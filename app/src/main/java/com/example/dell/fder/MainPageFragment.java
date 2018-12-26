@@ -31,12 +31,12 @@ public class MainPageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tv = (TextView) view.findViewById(R.id.main_page_view);
+//        tv = (TextView) view.findViewById(R.id.main_page_view);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
             String name = bundle.get("name").toString();
-            tv.setText(name);
+//            tv.setText(name);
         }
 
     }

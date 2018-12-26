@@ -31,7 +31,7 @@ public class ContactFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tv = (TextView) view.findViewById(R.id.contact_view);
+//        tv = (TextView) view.findViewById(R.id.contact_view);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
