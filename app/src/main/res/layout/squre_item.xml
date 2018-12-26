@@ -87,7 +87,7 @@
               android:text="    林冲，是小说《水浒传》中的人物。原为东京八十万禁军枪棒教头，生得豹头环眼、燕颔虎须，身长八尺，人称豹子头，又唤“小张飞”。善使枪棒，重情义，武艺盖世，有万夫不当之勇。妻子张氏贞娘。岳父张教头也是禁军教头，父亲是东京的提辖官。操刀鬼曹正是他的徒弟。无子女。也是整部书中从无败绩的神将。 林冲与倒拔垂杨柳的花和尚鲁智深一见如故，结拜为兄弟。"
               android:textSize="18sp"
               android:background="@drawable/downline"
-              android:overScrollMode="ifContentScrolls"
+              android:overScrollMode="always"
              />
 
       </FrameLayout>
@@ -111,6 +111,7 @@
             android:padding="5dp"
             android:layout_gravity="end"
             android:layout_marginRight="120dp"
+            android:onClick="changeImage"
             />
 
         <ImageView

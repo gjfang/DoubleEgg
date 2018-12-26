@@ -15,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,10 @@ import com.example.dell.fder.Adapter.FriendAdapter;
 import com.example.dell.fder.Adapter.MessageAdapter;
 import com.example.dell.fder.Adapter.MomentsAdapter;
 import com.example.dell.fder.Adapter.SquareAdapter;
+import com.example.dell.fder.Fragment.ContactFragment;
+import com.example.dell.fder.Fragment.MainPageFragment;
+import com.example.dell.fder.Fragment.MessageFragment;
+import com.example.dell.fder.Fragment.SqureFragment;
 import com.example.dell.fder.ObjectClass.Friend;
 import com.example.dell.fder.ObjectClass.Message;
 import com.example.dell.fder.ObjectClass.Moments;
@@ -348,5 +354,9 @@ public class MainActivity extends AppCompatActivity {
             default:
         }
         return true;
+    }
+
+    public void changeImage(View view){
+        ((ImageView)view).setImageResource(R.mipmap.icon_praise_selected);
     }
 }
