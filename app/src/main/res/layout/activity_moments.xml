@@ -49,6 +49,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/the_whole_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:layout_margin="8dp"
+                />
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,10 +65,14 @@
                 android:layout_marginTop="35dp"
                 app:cardCornerRadius="4dp">
 
+
+
+
                 <TextView
                     android:id="@+id/fruit_content_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="20sp"
                     android:layout_margin="10dp" />
             </android.support.v7.widget.CardView>
         </LinearLayout>

@@ -4,4 +4,6 @@
     <string name="title_dashboard">广场</string>
     <string name="title_notifications">消息</string>
     <string name="title_contact"> 朋友</string>
+    <string name="title_activity_create_square">create_square</string>
+    <string name="hint_when_create_square">分享此刻……</string>
 </resources>

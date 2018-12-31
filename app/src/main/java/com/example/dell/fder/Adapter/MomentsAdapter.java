@@ -27,19 +27,21 @@ public class MomentsAdapter extends RecyclerView.Adapter<MomentsAdapter.ViewHold
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-        ImageView fruitImage;
-        TextView fruitName;
+        ImageView momentsImage;
+        TextView momentsName;
+        TextView  content;
 
         public ViewHolder(View view) {
             super(view);
             cardView = (CardView) view;
-            fruitImage = (ImageView) view.findViewById(R.id.fruit_image);
-            fruitName = (TextView) view.findViewById(R.id.fruit_name);
+            momentsImage = (ImageView) view.findViewById(R.id.moments_image);
+            momentsName = (TextView) view.findViewById(R.id.moments_name);
+            content=(TextView)view.findViewById(R.id.content_of_squareItem);
         }
     }
 
-    public MomentsAdapter(List<Moments> fruitList) {
-        mMomentsList = fruitList;
+    public MomentsAdapter(List<Moments> momentsList) {
+        mMomentsList = momentsList;
     }
 
     @Override
@@ -53,10 +55,11 @@ public class MomentsAdapter extends RecyclerView.Adapter<MomentsAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                Moments fruit = mMomentsList.get(position);
+                Moments moments = mMomentsList.get(position);
                 Intent intent = new Intent(mContext, MomentsActivity.class);
-                intent.putExtra(MomentsActivity.FRUIT_NAME, fruit.getName());
-                intent.putExtra(MomentsActivity.FRUIT_IMAGE_ID, fruit.getImageId());
+                intent.putExtra(MomentsActivity.MOMENT_NAME, moments.getName());
+                intent.putExtra(MomentsActivity.MOMENT_IMAGE_ID, moments.getImageId());
+                intent.putExtra(MomentsActivity.CONTENT_OF_MOMENT,moments.getContentOfMoments());
                 mContext.startActivity(intent);
             }
         });
@@ -65,9 +68,10 @@ public class MomentsAdapter extends RecyclerView.Adapter<MomentsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Moments fruit = mMomentsList.get(position);
-        holder.fruitName.setText(fruit.getName());
-        Glide.with(mContext).load(fruit.getImageId()).into(holder.fruitImage);
+        Moments moments = mMomentsList.get(position);
+        holder.momentsName.setText(moments.getName());
+        holder.content.setText(moments.getContentOfMoments());
+        Glide.with(mContext).load(moments.getImageId()).into(holder.momentsImage);
     }
 
     @Override

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_of_create"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/ic_arrow_left"
+            android:navigationIcon="@drawable/ic_arrow_left"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发布旦圈"
+                android:textSize="28sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                />
+
+
+
+            <Button
+                android:id="@+id/btn_to_publish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Post"
+                android:textSize="18sp"
+                android:background="@drawable/button_change"
+                android:layout_gravity="end"
+                android:layout_margin="7dp"
+                android:textColor="@color/white"
+                />
+
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <EditText
+        android:id="@+id/content_of_new_Square"
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:hint="@string/hint_when_create_square"
+        android:background="@null"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/picture_of_new_Square"
+            android:layout_height="120dp"
+            android:layout_width="160dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:layout_margin="5dp"
+            />
+
+        <ImageView
+            android:id="@+id/btnToTakephoto"
+            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:src="@drawable/camera"
+            android:visibility="visible"
+            />
+           <ImageButton
+               android:id="@+id/btnToChoosePhoto"
+               android:layout_width="120dp"
+               android:layout_height="120dp"
+               android:src="@drawable/myphoto_05"
+               android:visibility="visible"
+               />
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="6dp"
+        >
+    <!--  get position-->
+    <ImageView
+        android:id="@+id/btnToOpenMap"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/buttonmap"
+        android:background="@color/bright_grey"
+        />
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="位置"
+        android:textSize="12sp"
+        android:layout_marginLeft="8dp"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/bright_grey"
+        />
+
+        <TextView
+            android:id="@+id/locationOfNewSquare"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:maxLines="1"
+            android:maxEms="10"
+            android:ellipsize="end"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="13sp"
+            android:text="未选择"
+            />
+    </LinearLayout>
+
+</LinearLayout>

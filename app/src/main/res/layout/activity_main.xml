@@ -66,6 +66,15 @@
                     />
 
 
+                <!--<android.support.design.widget.FloatingActionButton-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/create_new_square"-->
+                    <!--android:layout_margin="16dp"-->
+                    <!--android:layout_gravity="bottom|end"-->
+                    <!--android:src="@drawable/ic_content_add"-->
+                    <!--app:elevation="8dp"/>-->
+
             </FrameLayout>
         </LinearLayout>
 

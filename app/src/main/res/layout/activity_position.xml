@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PositionActivity">
+
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_of_position"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:navigationIcon="@drawable/ic_arrow_left"
+        android:navigationIcon="@drawable/ic_arrow_left"
+        app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地点"
+            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            />
+
+
+
+        <Button
+            android:id="@+id/btn_to_confirmPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textSize="18sp"
+            android:background="@drawable/button_change"
+            android:layout_gravity="end"
+            android:layout_margin="7dp"
+            android:textColor="@color/white"
+            />
+
+
+    </android.support.v7.widget.Toolbar>
+     <TextView
+         android:id="@+id/textOfPosition"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:maxLines="1"
+         android:ellipsize="end"
+         android:textSize="20sp"
+         android:text="未选择"
+         android:textAlignment="center"
+         android:textColor="@color/bright_grey"
+         />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+
+    >
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/mapview_location"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        />
+
+    <ImageView
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="76dp"
+        android:src="@drawable/ic_location"/>
+
+
+    <ListView
+        android:id="@+id/lv_location_nearby"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mapview_location"
+        />
+</RelativeLayout>
+
+</LinearLayout>

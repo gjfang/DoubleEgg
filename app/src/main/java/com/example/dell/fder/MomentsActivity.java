@@ -13,14 +13,18 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 //  单个动态的页面
 public class MomentsActivity extends AppCompatActivity {
 
-    public static final String FRUIT_NAME = "fruit_name";
+    public static final String MOMENT_NAME = "fruit_name";
 
-    public static final String FRUIT_IMAGE_ID = "fruit_image_id";
+    public static final String MOMENT_IMAGE_ID = "fruit_image_id";
+
+    public static  final String CONTENT_OF_MOMENT="content_of_moment";
 
 
 
@@ -29,11 +33,13 @@ public class MomentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moments);
         Intent intent = getIntent();
-        String fruitName = intent.getStringExtra(FRUIT_NAME);
-        int fruitImageId = intent.getIntExtra(FRUIT_IMAGE_ID, 0);
+        String fruitName = intent.getStringExtra(MOMENT_NAME);
+        int fruitImageId = intent.getIntExtra(MOMENT_IMAGE_ID, 0);
+        String contentOfMoment=intent.getStringExtra(CONTENT_OF_MOMENT);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         ImageView fruitImageView = (ImageView) findViewById(R.id.fruit_image_view);
+        TextView whole_title=(TextView)findViewById(R.id.the_whole_title);
         TextView fruitContentText = (TextView) findViewById(R.id.fruit_content_text);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -42,17 +48,11 @@ public class MomentsActivity extends AppCompatActivity {
         }
         collapsingToolbar.setTitle(fruitName);
         Glide.with(this).load(fruitImageId).into(fruitImageView);
-        String fruitContent = generateMomentsContent(fruitName);
-        fruitContentText.setText(fruitContent);
+         whole_title.setText(fruitName);
+        fruitContentText.setText(contentOfMoment);
     }
 
-    private String generateMomentsContent(String fruitName) {
-        StringBuilder fruitContent = new StringBuilder();
-        for (int i = 0; i < 500; i++) {
-            fruitContent.append(fruitName);
-        }
-        return fruitContent.toString();
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

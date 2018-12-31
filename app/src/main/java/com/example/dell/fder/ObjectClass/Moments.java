@@ -4,12 +4,13 @@ public class Moments {
 
     private String name;
     private String  date;
-
+    private String contentOfMoments;
     private int imageId;
 
-    public Moments(String name, int imageId,String date) {
+    public Moments(String name, int imageId,String date,String contentOfMoments) {
         this.name = name;
         this.imageId = imageId;
+        this.contentOfMoments=contentOfMoments;
     }
 
     public String getDate() {
@@ -23,5 +24,7 @@ public class Moments {
     public int getImageId() {
         return imageId;
     }
+
+    public String getContentOfMoments(){return contentOfMoments;}
 
 }

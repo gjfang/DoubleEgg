@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -28,6 +29,7 @@ public class SquareAdapter extends RecyclerView.Adapter<SquareAdapter.ViewHolder
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         CircleImageView headerImage;
+        ImageView  pictureOfSquareItem;
         TextView authorName;
         TextView  contentOfSquare;
         TextView dateOfSquare;
@@ -38,6 +40,7 @@ public class SquareAdapter extends RecyclerView.Adapter<SquareAdapter.ViewHolder
             super(view);
             cardView = (CardView) view;
             headerImage = (CircleImageView) view.findViewById(R.id.header_of_squareItem);
+            pictureOfSquareItem=(ImageView)view.findViewById(R.id.picture_of_squareItem);
             authorName = (TextView) view.findViewById(R.id.author_of_squareItem);
             contentOfSquare=(TextView)view.findViewById(R.id.content_of_squareItem);
             dateOfSquare=(TextView)view.findViewById(R.id.date_of_squareItem);
@@ -59,7 +62,7 @@ public class SquareAdapter extends RecyclerView.Adapter<SquareAdapter.ViewHolder
             @Override
             public void onClick(View v) {
 
-                //这一部分是卡片项目的点击事件，点击后展开，还没写对话界面
+                //这一部分是卡片项目的点击事件，点击后展开，还没写square具体界面
 //                int position = holder.getAdapterPosition();
 //                Square square = mSquareList.get(position);
 //                Intent intent = new Intent(mContext, SquareActivity.class);
@@ -78,6 +81,7 @@ public class SquareAdapter extends RecyclerView.Adapter<SquareAdapter.ViewHolder
         holder.contentOfSquare.setText(square.getContentOfSquare());
         holder.dateOfSquare.setText(square.getDate());
         Glide.with(mContext).load(square.getAuthorOfSquare().getHeadId()).into(holder.headerImage);
+        Glide.with(mContext).load(square.getIdOfPicture()).into(holder.pictureOfSquareItem);
     }
 
     @Override
