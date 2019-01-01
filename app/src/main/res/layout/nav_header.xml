@@ -10,7 +10,7 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/icon_image"
+        android:id="@+id/my_headerImage"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_centerInParent="true"
@@ -26,11 +26,11 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/mail"
+        android:id="@+id/userSignature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/username"
-        android:text="220@fudan.edu.cn"
+        android:text="人生格言"
         android:textColor="#FFF"
         android:textSize="14sp" />
 

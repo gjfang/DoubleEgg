@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,13 +42,22 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
-    private BottomNavigationView mBottomNavigationView;
+    public BottomNavigationView mBottomNavigationView;
     public TextView nameOfNow;
     private  int  fragNum;
     private Fragment [] mFragments=new Fragment[4];
+
+    CircleImageView my_headerImage;//头像
+    TextView username;
+    TextView userSignature;
+
+
+    private NavigationView my_nav_view;
 
     private Moments[] fruits = {
             new Moments("上海复旦大学教育发展基金会第三届理事会第十次会议召开", R.drawable.bg_tic,"2018/12/27","12月18日上午，上海复旦大学教育发展基金会理事会第三届第十次会议（以下简称“上海基金会”）在北京召开。复旦大学党委书记、基金会理事长焦扬，校长、基金会副理事长许宁生，校党委副书记、基金会副理事长兼秘书长许征，以及第三届理事会理事袁天凡、陈仲儿、汪新芽、鲁育宗、苟燕楠、杨增国出席会议,卢志强、梁信军、谢仕荣、翟立、张志勇五位理事派代表出席会议。校党委副书记、基金会监事长袁正宏列席会议。基金会副秘书长、投资委员会部分委员及秘书处工作人员参加会议。"), new Moments("相融相合 相得益彰 第六届上医文化论坛举行", R.drawable.main_1,"2018/12/27","许宁生肯定了投资委员会今年以来的工作成效，希望基金会秘书处不断提高工作水平,取得更大发展。他指出，基金会要在国际交流、人才引育、培育英才等方面不断积累资源，为学校建设成为中国特色世界一流大学提供必要的支持。"),
@@ -117,13 +129,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
         nameOfNow=(TextView)findViewById(R.id.nameOfNow);
         Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
-        NavigationView navView=(NavigationView)findViewById(R.id.nav_view);
+        NavigationView navView=(NavigationView)findViewById(R.id.my_nav_view);
+        View headerLayout = navView.getHeaderView(0);
+
+        //用户头像
+        my_headerImage=(CircleImageView)headerLayout.findViewById(R.id.my_headerImage);
+        //用户名
+        username=(TextView)headerLayout.findViewById(R.id.username);
+        //用户签名
+        userSignature=(TextView)headerLayout.findViewById(R.id.userSignature);
 
         mFragments[0]=MainPageFragment.newInstance("首页");
         mFragments[1]=SqureFragment.newInstance("发现");
@@ -136,14 +158,40 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }
-        navView.setCheckedItem(R.id.nav_call);
+
+        //这个是左侧滑动菜单的响应事件
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                mDrawerLayout.closeDrawers();
+
+                switch (menuItem.getItemId()){
+                    case R.id.nav_mySquare:
+                        startActivity(new Intent(MainActivity.this,PersonalSquareActivity.class).putExtra(PersonalSquareActivity.name,"lalal"));
+                        break;
+                    case R.id.nav_logout:
+                        break;
+                    case R.id.nav_signin:
+                        //不知道这里要不要返回信息
+                        Intent intent=new Intent(MainActivity.this,SignInActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+
                 return true;
             }
         });
+
+
+        //点击用户头像修改资料
+        //需要携带信息返回
+        my_headerImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ChangeInfoActivity.class);
+                 startActivity(intent);
+                 }
+        });
+
 
 
         initMoments();
@@ -152,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         adapter = new MomentsAdapter(fruitList);
         recyclerView.setAdapter(adapter);
+
     }
 
     private void refreshMoments() {
@@ -331,6 +380,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //顶部标题栏中按钮点击事件，待完善
@@ -345,7 +396,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "You clicked Settings", Toast.LENGTH_SHORT).show();
                 break;
 
-            default:
+
         }
         return true;
     }

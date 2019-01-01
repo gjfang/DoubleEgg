@@ -18,5 +18,6 @@ public class MyApplication extends Application {
         //包括BD09LL和GCJ02两种坐标，默认是BD09LL坐标。
         SDKInitializer.setCoordType(CoordType.BD09LL);
         locationService=new LocationService(getApplicationContext());
+
     }
 }

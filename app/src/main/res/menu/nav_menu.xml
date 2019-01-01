@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
+
+
         <item
-            android:id="@+id/nav_call"
-            android:icon="@drawable/nav_call"
-            android:title="Call" />
+            android:id="@+id/nav_mySquare"
+            android:icon="@drawable/buttonhome_08"
+            android:title="我的旦圈"
+            android:checkable="false"
+            />
+
+
         <item
-            android:id="@+id/nav_friends"
-            android:icon="@drawable/nav_friends"
-            android:title="Friends" />
+            android:icon="@drawable/exit"
+            android:title="Log out"
+            android:id="@+id/nav_logout"
+            android:checkable="false"
+            />
+
+
         <item
-            android:id="@+id/nav_location"
-            android:icon="@drawable/nav_location"
-            android:title="Location" />
-        <item
-            android:id="@+id/nav_mail"
-            android:icon="@drawable/nav_mail"
-            android:title="Mail" />
-        <item
-            android:id="@+id/nav_task"
-            android:icon="@drawable/nav_task"
-            android:title="Tasks" />
+            android:id="@+id/nav_signin"
+            android:icon="@drawable/home_05"
+            android:title="Sign Up"
+            android:checkable="false"
+            />
+
     </group>
 </menu>
+
+<!--  待定项目，留待日后再说-->
+<!--<item-->
+<!--android:id="@+id/nav_call"-->
+<!--android:icon="@drawable/nav_call"-->
+<!--android:title="Call" />-->
+<!--<item-->
+<!--android:id="@+id/nav_friends"-->
+<!--android:icon="@drawable/nav_friends"-->
+<!--android:title="Friends" />-->
+<!--<item-->
+<!--android:id="@+id/nav_location"-->
+<!--android:icon="@drawable/nav_location"-->
+<!--android:title="Location" />-->

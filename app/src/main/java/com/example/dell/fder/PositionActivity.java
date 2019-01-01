@@ -1,6 +1,10 @@
 package com.example.dell.fder;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -60,7 +66,7 @@ public class PositionActivity extends PermissionActivity implements AdapterView.
 
 
 
-
+  private Button btnToConfirm;
     private MapView mAtyMainMapView;
     private ListView mAtyMainListView;
 
@@ -78,26 +84,33 @@ public class PositionActivity extends PermissionActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_position);
-       textView=(TextView)findViewById(R.id.textOfPosition);
 
+        setContentView(R.layout.activity_position);
+//
+       textView=(TextView)findViewById(R.id.textOfPosition);
+       btnToConfirm=(Button)findViewById(R.id.btn_to_confirmPosition);
+  registerMessageReceiver();
 
 
         initView();
         initListener();
         requestPermission(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE}, LOCATION_REQUEST_CODE);
-
-
-
-
-
-
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar_of_position);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        btnToConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.putExtra("Position",textView.getText());
+                setResult(RESULT_OK,intent);
+                finish();
+            }
+        });
 
     }
 
@@ -106,7 +119,9 @@ public class PositionActivity extends PermissionActivity implements AdapterView.
         switch (item.getItemId()) {
             case android.R.id.home:
 
-
+        Intent intent=new Intent();
+        intent.putExtra("Position","未选择");
+       setResult(RESULT_CANCELED,intent);
                 finish();
 
                 return true;
@@ -123,6 +138,35 @@ public class PositionActivity extends PermissionActivity implements AdapterView.
 
 
 
+//这一部分是广播接收器，用于接受来自adapter的点击事件发送的广播，并进行ui的修改
+
+    public MessageReceiver mMessageReceiver;
+    public static String ACTION_INTENT_RECEIVER = "com.example.dell.fder.YOUR_BROADCAST";
+
+    /**
+     * 动态注册广播
+     */
+    public void registerMessageReceiver() {
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+
+        filter.addAction(ACTION_INTENT_RECEIVER);
+        registerReceiver(mMessageReceiver, filter);
+    }
+
+    public class MessageReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // TODO Auto-generated method stub
+            if (intent.getAction().equals(ACTION_INTENT_RECEIVER)) {
+                textView.setText(intent.getStringExtra("Title"));
+
+
+            }
+        }
+
+    }
 
 
 
@@ -139,6 +183,7 @@ public class PositionActivity extends PermissionActivity implements AdapterView.
 
 
 
+//以下是地图活动
 
     @Override
     protected void onStart() {
@@ -166,6 +211,7 @@ public class PositionActivity extends PermissionActivity implements AdapterView.
 
     @Override
     protected void onDestroy() {
+        unregisterReceiver(mMessageReceiver);
         super.onDestroy();
         mAtyMainMapView.onDestroy();
     }
@@ -212,14 +258,7 @@ public class PositionActivity extends PermissionActivity implements AdapterView.
         mPlaceAdapter = new PlaceAdapter(this, new ArrayList<PoiInfo>());
         mAtyMainListView.setAdapter(mPlaceAdapter);
 
-        mPlaceAdapter.setOnClickMyTextView(new PlaceAdapter.onClickMyTextView() {
 
-            @Override
-            public void myTextViewClick(int id) {
-                //Toast.makeText(PositionActivity.this,"fsdfsdfdsf", Toast.LENGTH_SHORT).show();
-             textView.setText(id);
-            }
-        });
 
 
 

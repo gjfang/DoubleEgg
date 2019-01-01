@@ -1,6 +1,9 @@
 package com.example.dell.fder.Adapter;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +22,12 @@ import java.util.List;
 /**
  * 显示位置列表的ListView适配器
  */
-public class PlaceAdapter extends BaseAdapter {
+public class PlaceAdapter extends BaseAdapter  {
 
     private Context mContext;
     private List<PoiInfo> mPoiInfoList;
     private LayoutInflater mInflater;
-    private onClickMyTextView onClickMyTextView;
 
-    public interface onClickMyTextView{
-        public void myTextViewClick(int id);
-    }
-    public void setOnClickMyTextView(onClickMyTextView onClickMyTextView) {
-        this.onClickMyTextView = onClickMyTextView;
-    }
 
 
     //构造方法用来接受从activity传过来的信息
@@ -40,6 +36,7 @@ public class PlaceAdapter extends BaseAdapter {
         mPoiInfoList = poiInfoList;
         mInflater = LayoutInflater.from(mContext);
     }
+
 
     public void replaceAll(List<PoiInfo> poiInfoList) {
         mPoiInfoList = poiInfoList;
@@ -85,16 +82,23 @@ public class PlaceAdapter extends BaseAdapter {
         viewHolder.tvLocationTitle.setText(poiInfo.name);
         viewHolder.tvLocationAddress.setText(poiInfo.address);
 
-        if (onClickMyTextView!=null) {
+
             viewHolder.tvLocationTitle.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    onClickMyTextView.myTextViewClick(position);
 
+
+                    Intent intent=new Intent();
+                    intent.setAction(PositionActivity.ACTION_INTENT_RECEIVER);
+                    intent.putExtra("Title",viewHolder.tvLocationTitle.getText());
+
+//                    intent.setComponent(new ComponentName("com.example.dell.fder","com.example.dell.fder.PositionActivity$MessageReceiver"));
+
+                    mContext.sendBroadcast(intent);
+                    Toast.makeText(mContext,viewHolder.tvLocationTitle.getText(),Toast.LENGTH_SHORT).show();
                 }
             });
-        }
 
 
         return convertView;
@@ -103,6 +107,7 @@ public class PlaceAdapter extends BaseAdapter {
     static class ViewHolder {
 
         TextView tvLocationTitle, tvLocationAddress;
+
 
         public ViewHolder(View view) {
             tvLocationTitle = view.findViewById(R.id.item_title);

@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    >
 
 
     <LinearLayout
@@ -66,14 +68,6 @@
                     />
 
 
-                <!--<android.support.design.widget.FloatingActionButton-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:id="@+id/create_new_square"-->
-                    <!--android:layout_margin="16dp"-->
-                    <!--android:layout_gravity="bottom|end"-->
-                    <!--android:src="@drawable/ic_content_add"-->
-                    <!--app:elevation="8dp"/>-->
 
             </FrameLayout>
         </LinearLayout>
@@ -93,12 +87,17 @@
 
     <android.support.design.widget.NavigationView
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/nav_view"
+        android:id="@+id/my_nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
        app:menu="@menu/nav_menu"
-        app:headerLayout="@layout/nav_header"/>
+        app:headerLayout="@layout/nav_header">
+
+
+
+
+    </android.support.design.widget.NavigationView>
 
 
 

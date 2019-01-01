@@ -3,24 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.dell.fder">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
-
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     //获取统计数据
     <application
         android:name=".MyApplication"
@@ -48,7 +45,6 @@
         <activity android:name=".MessageActivity" />
         <activity android:name=".SquareActivity" />
 
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.dell.fder.fileprovider"
@@ -69,7 +65,25 @@
         <activity android:name=".PositionActivity" />
         <activity android:name=".PersonalCardActivity" />
         <activity android:name=".PersonalSquareActivity" />
+        <activity android:name=".ChangeInfoActivity" />
 
+        <receiver
+            android:name=".PositionActivity$MessageReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.dell.fder.YOUR_BROADCAST" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".SignUpActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            />
+        <activity android:name=".SignInActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            >
+
+        </activity>
     </application>
 
 </manifest>

@@ -17,77 +17,60 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import java.io.File;
 import java.io.IOException;
 
-public class NewSquareActivity extends AppCompatActivity {
+public class ChangeInfoActivity extends AppCompatActivity {
+
+    public static  final String userName="userName";
 
     public static final int TAKE_PHOTO = 1;
 
     public static final int CHOOSE_PHOTO = 2;
 
-    public static final int GET_POSITION = 3;
-
-    private ImageView imageToShow;
-    private ImageView  cameraBtn;
-    private ImageButton chooseBtn;
+    private ImageView headerImage_toChange;
+    private ImageView  takePhoto_forChangHead;
+    private ImageButton choosePhoto_forChange;
     private Uri imageUri;
-    private Button postBtn;
-    private ImageView btnToMap;
-  private TextView locationText;
+    private TextView btn_save_changeInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_create_square);
-        imageToShow=(ImageView)findViewById(R.id.picture_of_new_Square);
-        cameraBtn=(ImageView)findViewById(R.id.btnToTakephoto);
-        chooseBtn=(ImageButton)findViewById(R.id.btnToChoosePhoto);
-        postBtn=(Button)findViewById(R.id.btn_to_publish);
-       btnToMap=(ImageView)findViewById(R.id.btnToOpenMap);
-       locationText=(TextView)findViewById(R.id.locationOfNewSquare);
-        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar_of_create);
+        setContentView(R.layout.activity_change_info);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.change_info_toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        postBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        headerImage_toChange=(ImageView)findViewById(R.id.headerImage_toChange);
+        takePhoto_forChangHead=(ImageView)findViewById(R.id.takePhoto_forChangHead);
+        choosePhoto_forChange=(ImageButton)findViewById(R.id.choosePhoto_forChange);
+        btn_save_changeInfo=(TextView) findViewById(R.id.btn_save_changeInfo);
+
+        TextView signature=findViewById(R.id.personal_name);
+
+      btn_save_changeInfo.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              //保存修改
+          }
+      });
 
 
-
-
-
-//        用来开启位置选择活动
-     btnToMap.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-             startActivityForResult(new Intent(NewSquareActivity.this,PositionActivity.class),GET_POSITION);
-         }
-     });
-
-        cameraBtn.setOnClickListener(new View.OnClickListener() {
+        takePhoto_forChangHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 创建File对象，用于存储拍照后的图片
@@ -103,7 +86,7 @@ public class NewSquareActivity extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT < 24) {
                     imageUri = Uri.fromFile(outputImage);
                 } else {
-                    imageUri = FileProvider.getUriForFile(NewSquareActivity.this, "com.example.dell.fder.fileprovider", outputImage);
+                    imageUri = FileProvider.getUriForFile(ChangeInfoActivity.this, "com.example.dell.fder.fileprovider", outputImage);
                 }
                 // 启动相机程序
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
@@ -112,26 +95,35 @@ public class NewSquareActivity extends AppCompatActivity {
             }
         });
 
-       chooseBtn.setOnClickListener(new View.OnClickListener() {
+       choosePhoto_forChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(NewSquareActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(NewSquareActivity.this, new String[]{ Manifest.permission. WRITE_EXTERNAL_STORAGE }, 1);
+                if (ContextCompat.checkSelfPermission(ChangeInfoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(ChangeInfoActivity.this, new String[]{ Manifest.permission. WRITE_EXTERNAL_STORAGE }, 1);
                 } else {
                     openAlbum();
                 }
             }
         });
 
+
+
+
     }
 
 
+/****
+ *
+ *
+ */
 
-    private void openAlbum() {
-        Intent intent = new Intent("android.intent.action.GET_CONTENT");
-        intent.setType("image/*");
-        startActivityForResult(intent, CHOOSE_PHOTO); // 打开相册
-    }
+
+
+private void openAlbum() {
+    Intent intent = new Intent("android.intent.action.GET_CONTENT");
+    intent.setType("image/*");
+    startActivityForResult(intent, CHOOSE_PHOTO); // 打开相册
+}
 
 
 
@@ -158,10 +150,10 @@ public class NewSquareActivity extends AppCompatActivity {
                     try {
                         // 将拍摄的照片显示出来
                         Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-                        imageToShow.setVisibility(View.VISIBLE);
-                        imageToShow.setImageBitmap(bitmap);
-                        cameraBtn.setVisibility(View.GONE);
-                        chooseBtn.setVisibility(View.GONE);
+                        headerImage_toChange.setVisibility(View.VISIBLE);
+                        headerImage_toChange.setImageBitmap(bitmap);
+                        takePhoto_forChangHead.setVisibility(View.GONE);
+                        choosePhoto_forChange.setVisibility(View.GONE);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -170,7 +162,7 @@ public class NewSquareActivity extends AppCompatActivity {
             case CHOOSE_PHOTO:
                 if (resultCode == RESULT_OK) {
                     // 判断手机系统版本号
-                    imageToShow.setVisibility(View.VISIBLE);
+                    headerImage_toChange.setVisibility(View.VISIBLE);
                     if (Build.VERSION.SDK_INT >= 19) {
                         // 4.4及以上系统使用这个方法处理图片
                         handleImageOnKitKat(data);
@@ -178,19 +170,10 @@ public class NewSquareActivity extends AppCompatActivity {
                         // 4.4以下系统使用这个方法处理图片
                         handleImageBeforeKitKat(data);
                     }
-                    cameraBtn.setVisibility(View.GONE);
-                    chooseBtn.setVisibility(View.GONE);
+                    takePhoto_forChangHead.setVisibility(View.GONE);
+                    choosePhoto_forChange.setVisibility(View.GONE);
                 }
                 break;
-            case GET_POSITION:
-                if (resultCode==RESULT_OK){
-
-                    String pos=data.getStringExtra("Position");
-                    locationText.setText(pos);
-                }else if (resultCode==RESULT_CANCELED){
-                    locationText.setText("未选择");
-
-                }
             default:
                 break;
         }
@@ -244,23 +227,28 @@ public class NewSquareActivity extends AppCompatActivity {
     private void displayImage(String imagePath) {
         if (imagePath != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
-            imageToShow.setImageBitmap(bitmap);
+           headerImage_toChange.setImageBitmap(bitmap);
         } else {
             Toast.makeText(this, "failed to get image", Toast.LENGTH_SHORT).show();
         }
     }
+
+/*
+*
+*
+*
+ */
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+
+                //携带修改信息
                 finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }

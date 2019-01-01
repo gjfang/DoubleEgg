@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
@@ -11,7 +10,7 @@
         android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
+            android:id="@+id/personal_collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -22,15 +21,16 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image_personalCard"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:scaleType="centerCrop"
+                android:layout_gravity="center"
                 app:layout_collapseMode="parallax"
                 android:layout_centerInParent="true"
                 />
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/personal_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin" >
@@ -59,10 +59,9 @@
             android:orientation="vertical"
             >
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:orientation="horizontal"
                 android:background="@drawable/downline"
                 >
                 <TextView
@@ -80,16 +79,39 @@
                     android:textSize="18sp"
                     android:text="Waaa"
                     android:layout_gravity="end"
-                    android:layout_marginLeft="200dp"
                     android:textColor="@color/bright_grey"
                     />
-            </LinearLayout>
+            </FrameLayout>
 
 
-            <LinearLayout
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/downline"
+                >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="签名："
+                    android:textSize="20sp"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="30dp"
+                    />
+                <TextView
+                    android:id="@+id/personal_signature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="Waaa"
+                    android:layout_gravity="end"
+                    android:textColor="@color/bright_grey"
+                    />
+            </FrameLayout>
+
+            <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:orientation="horizontal"
             android:background="@drawable/downline"
             >
         <TextView
@@ -107,15 +129,13 @@
             android:textSize="18sp"
             android:text="未知"
             android:layout_gravity="end"
-            android:layout_marginLeft="200dp"
             android:textColor="@color/bright_grey"
             />
-        </LinearLayout>
+        </FrameLayout>
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:orientation="horizontal"
             android:background="@drawable/downline"
             >
             <TextView
@@ -133,17 +153,15 @@
                 android:textSize="18sp"
                 android:text="1970-01-01"
                 android:layout_gravity="end"
-                android:layout_marginLeft="140dp"
                 android:textColor="@color/bright_grey"
                 />
 
-        </LinearLayout>
+        </FrameLayout>
 
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:orientation="horizontal"
                 android:background="@drawable/downline"
                 >
                 <TextView
@@ -154,21 +172,40 @@
                     android:layout_gravity="start"
                     android:layout_marginLeft="30dp"
                     />
-                <TextView
+                <ImageView
                     android:id="@+id/personal_square"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="点击进入"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="end"
-                    android:layout_marginLeft="140dp"
-                    android:textColor="@color/bright_grey"
+                    android:src="@drawable/buttonhome_08"
                        />
 
-            </LinearLayout>
+            </FrameLayout>
 
 
+          <FrameLayout
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+              >
+              <TextView
+                  android:layout_height="wrap_content"
+                  android:layout_width="wrap_content"
+                  android:text="聊个天吧"
+                  android:textSize="20sp"
+                  android:layout_marginLeft="30dp"
+                  />
 
+              <ImageView
+                  android:id="@+id/btn_to_startTalk"
+                  android:layout_height="30dp"
+                  android:layout_width="30dp"
+                  android:layout_margin="4dp"
+                  android:src="@drawable/talktalk"
+                  android:layout_gravity="end"
+                  />
+
+
+          </FrameLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -178,4 +215,4 @@
     </android.support.v4.widget.NestedScrollView>
 
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

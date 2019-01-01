@@ -1,6 +1,7 @@
 package com.example.dell.fder.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.dell.fder.ObjectClass.Friend;
+import com.example.dell.fder.PersonalCardActivity;
 import com.example.dell.fder.R;
 
 import java.util.List;
@@ -56,11 +58,18 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
             @Override
             public void onClick(View v) {
 
+
+
+
+
                 //这一部分是卡片项目的点击事件，点击后展开，还没写对话界面
-//                int position = holder.getAdapterPosition();
-//                Friend friend = mFriendList.get(position);
-//                Intent intent = new Intent(mContext, FriendActivity.class);
-//                intent.putExtra(FriendActivity.FRUIT_NAME, friend.getName());
+                int position = holder.getAdapterPosition();
+                Friend friend = mFriendList.get(position);
+                Intent intent = new Intent(mContext, PersonalCardActivity.class);
+                intent.putExtra(PersonalCardActivity.nickName,friend .getNameOfFriend());
+                intent.putExtra(PersonalCardActivity.signature,friend.getSignature());
+                mContext.startActivity(intent);
+
 //                intent.putExtra(FriendActivity.FRUIT_IMAGE_ID, friend.getImageId());
 //                mContext.startActivity(intent);
             }

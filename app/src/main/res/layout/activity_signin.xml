@@ -3,41 +3,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorAccentTrans"
+    android:background="@color/color_tab_1"
     android:orientation="vertical"
-    android:padding="30dp">
-
+    android:padding="40dp">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/signup_toolbar"
+        android:id="@+id/signin_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         />
 
+    <ImageView
+        android:id="@+id/header_signin"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        android:paddingBottom="20dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_login" />
 
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/TIL_signup_nick"
+        android:id="@+id/TIL_signin_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:textColorHint="#FFF"
         app:errorEnabled="true"
         app:counterEnabled="true"
         app:counterMaxLength="10"
-        android:textColorHint="#FFF">
+
+        >
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/nickname_signup"
+            android:id="@+id/nickname_signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="NickName"
-            android:inputType="textAutoCorrect|textEmailAddress"
-            android:textColor="#FFFFFF" />
+            android:inputType="textEmailAddress"
+            android:textColor="#FFF" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/TIL_signupFirstPas"
+        android:id="@+id/TIL_signin_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -48,43 +56,33 @@
         android:textColorHint="#FFF">
 
         <EditText
-            android:id="@+id/password_signup"
+            android:id="@+id/password_signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
             android:maxLength="6"
-            android:textColor="#FFFFFF" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/ITL_signupSecondPas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:passwordToggleEnabled="true"
-        app:errorEnabled="true"
-        app:counterEnabled="true"
-        app:counterMaxLength="6"
-        android:textColorHint="#FFF">
-
-        <EditText
-            android:id="@+id/confirm_signup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirm Your Password"
-            android:inputType="textPassword"
-            android:maxLength="6"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFF" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/btnSignup"
+        android:id="@+id/btnSignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@null"
-        android:text="Signup"
-        android:textColor="#FFF"
+        android:text="Signin"
+        android:textColor="@color/color_tab_2"
         android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/gotoSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:text="I don't have an account."
+        android:textColor="@color/new_blue_normal"
+        android:textSize="15sp"
+        />
 </LinearLayout>
